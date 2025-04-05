@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+    <style>
+        .commentar{
+            width: 50%;
+            line-height: 45px;
+        }
+        .productPart{
+            text-align:center;
+        }
+        .commentPart{
+            margin-bottom:5px;
+            background:beige;
+        }
+    </style>
+</head>
+<body>
+    <div id="tab">
+        <a href="/">Home</a>
+        <a href="/profile">Profile</a>
+        <a href="/?category=Antique Furniture">Antique Furniture</a>
+        <a href="/?category=Vinyls">Vinyls</a>
+        <a href="/?category=GPS Sport Watch">GPS Sport Watch</a>
+        <a href="/?category=Sport Shoe">Sport Shoe</a>
+    </div><br><br>
+    <div class="productPart">
+    <h2>{{product.name}}</h2>
+    <img src={{product.image}} width="500" height="600">
+    <p>{{product.rating}}/5</p>
+    <p>Price:{{product.price}}$</p>
+    <p>{{product.description}}</p><br>
+    <p>Seller:{{product.seller}}</p>
+    {% if  product.category == 'Antique Furniture' %}
+    <p>Age:{{product.age}} Years</p>
+    <p>Material:{{product.material}}</p>
+    {% endif %}
+    {% if  product.category == 'Vinyls' %}
+    <p>Age:{{product.age}} Years</p>
+    {% endif %}
+    {% if  product.category == 'GPS Sport Watch' %}
+    <p>Battery Life:{{product.battery_life}}</p>
+    {% endif %}
+    {% if  product.category == 'Sport Shoe' %}
+    <p>Size:{{product.size}}</p>
+    <p>Material:{{product.material}}</p>
+    {% endif %}
+    </div>
+    <br>
+    <h3> Reviews:</h3>
+    {% for review in product.reviews %}
+    <div class="commentPart">
+    <p><b>{{review.username}}</b> </p>
+    <p>Comment:{{review.comment}} </p>
+    </div>
+    {% endfor %}
+    <h3>Make Comment</h3>
+    <form action="addComment" method="post">
+        {% csrf_token %}
+        <textarea class="commentar" placeholder="Add Your Comment" value=" " name="comment"></textarea><br>
+        <input type="hidden" name="id" value="{{product.name}}">
+        <input type="submit">
+    </form>
+    <h3>Rate Product</h3>
+    <form action="givePoint" method="post">
+        {% csrf_token %}
+        <select id="point" name="point">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <input type="hidden" name="id" value="{{product.name}}">
+        <input type="submit">
+    </form>
+</body>
+</html>

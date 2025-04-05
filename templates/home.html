@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        .card{
+            text-align:center;
+            position:relative;
+            width: 30%;
+            background:green;
+            margin-right:10px;
+            border-radius: 25px;
+            padding-bottom:15px;
+            margin:auto;
+        }
+        .main{
+            display: grid;
+        }
+    </style>
+</head>
+<body>
+    <div id="tab">
+        <a href="/">Home</a>
+        <a href="/profile">Profile</a>
+        {% if isLoginned == 1 %}
+        <a href="/logout">logout</a>
+        {% else %}
+        <a href="/login">login</a>
+        {% endif %}
+        <a href="?category=Antique Furniture">Antique Furniture</a>
+        <a href="?category=Vinyls">Vinyls</a>
+        <a href="?category=GPS Sport Watch">GPS Sport Watch</a>
+        <a href="?category=Sport Shoe">Sport Shoe</a>
+        {% if isAdmin == 1 %}
+        <a href="/admin">Admin Page</a>
+        {% endif %}
+    </div>
+        <br>
+        <br>
+    <div class="main">
+        {% for product in products %}
+        <div class="card">
+        <img src={{product.image}} width="200" height="200">
+        <p>{{product.rating}}/5</p>
+        <p>Name:{{product.name}}</p>
+        <p>{{product.price}}$</p><br>
+        <a href="/product?id={{product.name}}">view more</a>
+        </div>
+        <br>
+        {% endfor %}
+    </div>
+    
+</body>
+</html>

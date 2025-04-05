@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        .commentPart{
+            margin-bottom:5px;
+            background:beige;
+        }
+    </style>
+</head>
+<body>
+    <a href="/">Home</a>
+        <a href="/profile">Profile</a>
+        <a href="/?category=Antique Furniture">Antique Furniture</a>
+        <a href="/?category=Vinyls">Vinyls</a>
+        <a href="/?category=GPS Sport Watch">GPS Sport Watch</a>
+        <a href="/?category=Sport Shoe">Sport Shoe</a>
+    <h1> Hello {{username}} </h1><br>
+    <h3>There is your stats</h3><br>
+    <b>username </b>:{{username}} <br>
+    <b>averageRating</b> : {{averageRating}} <br>
+    <b>Reviews</b>:<hr>
+    {% for review in reviews %}
+    <div class="commentPart">
+    <p><b>Product Name:{{review.pName}} </b></p>
+    <p>{{review.comment}} </p>
+    </div>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="tab">
+        <a href="/">Home</a>
+        <a href="/profile">Profile</a>
+        <a href="/logout">logout</a>
+        <a href="/?category=Antique Furniture">Antique Furniture</a>
+        <a href="/?category=Vinyls">Vinyls</a>
+        <a href="/?category=GPS Sport Watch">GPS Sport Watch</a>
+        <a href="/?category=Sport Shoe">Sport Shoe</a>
+        <a href="/admin">Admin Page</a>
+    </div>
+        <br>
+        <br>
+    <h1>Admin Page</h1>
+    <h2>Add Product Operation</h2>
+    <form action="addProduct" method="post">
+        {% csrf_token %}
+        ProductName: <input type="text" name="name" class="text-inp"><br>
+        Description: <input type="text" name="description" class="text-inp"><br>
+        Price: <input type="text" name="price" class="text-inp"><br>
+        Seller: <input type="text" name="seller" class="text-inp"><br>
+        ImageUrl: <input type="text" name="imageurl" class="text-inp"><br>
+        BatteryLife: <input type="text" name="battery_life" class="text-inp"><br>
+        Age: <input type="text" name="age" class="text-inp"><br>
+        Size: <input type="text" name="size" class="text-inp"><br>
+        Material: <input type="text" name="material" class="text-inp"><br>
+        Category: <select id="category" name="category">
+            <option value="Antique Furniture">Antique Furniture</option>
+            <option value="Vinyls">Vinyls</option>
+            <option value="GPS Sport Watch">GPS Sport Watch</option>
+            <option value="Sport Shoe">Sport Shoe</option>
+        </select><br>
+        <input type="submit">
+    </form>
+    {% if  addProductS == 0 %}
+    <p>Product added successfully</p>
+    {% endif %}
+    {% if  addProductS == 1 %}
+    <p>There is missing information for product please check and try again</p>
+    {% endif %}
+    {% if  addProductS == 2 %}
+    <p>There is a product in shop that has same name you should select differeant name</p>
+    {% endif %}
+    {% if  addProductS == 3 %}
+    <p>There is missing information for product please check and try again</p>
+    {% endif %}
+    {% if  addProductS == 4 %}
+    <p>Product category should be Vinyls,Sport Shoe, Antique Furniture or GPS Sport Watch</p>
+    {% endif %}
+    <br>
+    <br>
+    <h2>Create Account Operation</h2><br>
+    <form action="createAccount" method="post">
+    {%csrf_token%}
+    Username: <input type="text" name="username" class="text-inp"><br>
+    Password: <input type="password" name="password" class="text-inp"><br><br>
+    <input type="submit" class="but-inp"><br>
+    </form>
+    {% if createaccstatus == 1 %}
+    <br><p>Account Created Successfully</p>
+
+    {% endif %}
+
+    {% if createaccstatus == 0 %}
+    <br><p>Account Creation Attempt Failed</p>
+
+    {% endif %}
+    <h2>Account Delete Operation</h2>
+    <form action="deleteAccount" method="post">
+        {%csrf_token%}
+        Username: <input type="text" name="username" class="text-inp"><br>
+        <input type="submit" class="but-inp"><br>
+    </form>
+    {% if deleteUserS == 1 %}
+    <br><p>Account Deleted Successfully</p>
+
+    {% endif %}
+
+    {% if deleteUserS == 0 %}
+    <br><p>Account Deletion Attempt Failed</p>
+
+    {% endif %}
+    <h2>Product Delete Operation</h2>
+    <form action="deleteProduct" method="post">
+        {%csrf_token%}
+        Name: <input type="text" name="name" class="text-inp"><br>
+        <input type="submit" class="but-inp"><br>
+    </form>
+    {% if deleteProductS == 0 %}
+    <br><p>Product Deletion Attempt Failed</p>
+
+    {% endif %}
+
+    {% if deleteProductS == 1 %}
+    <br><p>Product Deleted Successfully</p>
+
+    {% endif %}
+</body>
+</html>
