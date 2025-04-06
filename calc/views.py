@@ -188,7 +188,7 @@ def addProduct(request):
 def addComment(request):
     stat=verification(request.COOKIES.get('JWT_token'))
     if stat['stat']==0:
-        return redirect('/login')
+        return redirect('/login?status=4')
     name=request.POST['id']
     comment=request.POST['comment']
     review(name,comment,stat['token']['username'])
@@ -197,7 +197,7 @@ def addComment(request):
 def givePoint(request):
     stat=verification(request.COOKIES.get('JWT_token'))
     if stat['stat']==0:
-        return redirect('/login')
+        return redirect('/login?status=4')
     name=request.POST['id']
     point=request.POST['point']
     rate(name,int(point),stat['token']['username'])
