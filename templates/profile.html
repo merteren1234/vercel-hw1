@@ -21,7 +21,7 @@
     <h1> Hello {{username}} </h1><br>
     <h3>There is your stats</h3><br>
     <b>username </b>:{{username}} <br>
-    <b>averageRating</b> : {{averageRating}} <br>
+    <b>averageRating</b> : {{averageRating|floatformat:2}} <br>
     <b>Reviews</b>:<hr>
     {% for review in reviews %}
     <div class="commentPart">
