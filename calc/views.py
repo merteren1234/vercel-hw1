@@ -15,8 +15,9 @@ def home(request):
     except:
         productList=proList
 
-    r=0
+    
     for product in productList:
+        r=0
         for i in product['rates']:
             r+=i['point']
         if len(product['rates']) != 0:
