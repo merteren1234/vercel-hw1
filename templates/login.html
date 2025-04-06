@@ -42,6 +42,11 @@
     <p> you should login first to see profile </p>
     </div><br>
     {% endif %}
+    {% if  status == 4 %}
+    <div class="error">
+    <p> you should login first to make comment or give point </p>
+    </div><br>
+    {% endif %}
     <div id="tab">
         <a href="/">Home</a>
         <a href="/profile">Profile</a>
