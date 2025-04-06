@@ -70,6 +70,8 @@ def loginPage(request):
             return render(request,'login.html',{'status':2})
         elif request.GET['status']=='3':
             return render(request,'login.html',{'status':3})
+        elif request.GET['status']=='4':
+            return render(request,'login.html',{'status':4})
         else:
             return render(request,'login.html',{'status':0})
     except:
